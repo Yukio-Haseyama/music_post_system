@@ -15,12 +15,12 @@ public enum MessageConst {
     I_DELETED("削除が完了しました"),
 
     //バリデーション
-    E_NONAME("名前を入力してください"),
-    E_NOPASSWORD("パスワードを入力してください"),
-    E_NOMEM_CODE("会員番号を入力してください"),
-    E_MEM_CODE_EXIST("入力された会員番号の情報は既に存在しています"),
-    E_NOTITLE("タイトルを入力してください"),
-    E_NOURL("URLを入力してください");
+    M_NONAME("名前を入力してください"),
+    M_NOPASSWORD("パスワードを入力してください"),
+    M_NOMEM_CODE("会員番号を入力してください"),
+    M_MEM_CODE_EXIST("入力された会員番号の情報は既に存在しています"),
+    M_NOTITLE("タイトルを入力してください"),
+    M_NOURL("URLを入力してください");
 
     //文字列
     private final String text;
