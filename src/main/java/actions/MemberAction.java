@@ -183,6 +183,50 @@ public void edit() throws ServletException,IOException{
     forward(ForwardConst.FW_MEM_EDIT);
 }
 
+/**
+ * 更新を行う
+ * @throws ServletException
+ * @throws IOException
+ */
+public void update() throws ServletException, IOException{
+
+  //CSRF対策 tokenのチェック
+    if(checkToken()) {
+        //パラメータの値を元に会員情報のインスタンスを作成する
+        MemberView mv = new MemberView(
+                toNumber(getRequestParam(AttributeConst.MEM_ID)),
+                getRequestParam(AttributeConst.MEM_CODE),
+                getRequestParam(AttributeConst.MEM_NAME),
+                getRequestParam(AttributeConst.MEM_PASS),
+                null,
+                null);
+
+      //アプリケーションスコープからpepper文字列を取得
+        String pepper = getContextScope(PropertyConst.PEPPER);
+
+      //会員情報更新
+        List<String> errors = service.update(mv, pepper);
+
+        if(errors.size() > 0) {
+          //更新中にエラーが発生した場合
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId());//CSRF対策用トークン
+            putRequestScope(AttributeConst.MEMBER, mv);//入力された会員情報
+            putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+          //編集画面を再表示
+            forward(ForwardConst.FW_MEM_EDIT);
+        }else {
+          //更新中にエラーがなかった場合
+
+          //セッションに更新完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+
+          //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_MEM, ForwardConst.CMD_INDEX);
+        }
+    }
+}
 
 }
 
