@@ -22,10 +22,7 @@ public interface JpaConst {
     String MEM_COL_COM = "comment";//簡単な自己紹介欄
     String MEM_COL_CREATED_AT = "created_at";//登録日時
     String MEM_COL_UPDATED_AT = "up_dated_at";//更新日時
-    String MEM_COL_DELETE_FLAG = "delete_flag";//削除フラグ
 
-    int MEM_DEL_TRUE = 1;//削除フラグON
-    int MEM_DEL_FALSE = 0;//削除フラグOFF
 
     //楽曲テーブル
     String Table_SONGS = "songs";

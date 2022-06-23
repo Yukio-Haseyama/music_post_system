@@ -8,7 +8,7 @@ public enum AttributeConst {
     FLUSH("flush"),
 
     //一覧画面共通
-    MAX_ROW("maxrow"),
+    MAX_ROW("maxRow"),
     PAGE("page"),
 
     //入力フォーム共通
@@ -29,10 +29,6 @@ public enum AttributeConst {
     MEM_CODE("code"),
     MEM_PASS("password"),
     MEM_NAME("name"),
-
-    //削除フラグ
-    DEL_FLAG_TRUE(1),
-    DEL_FLAG_FALSE(0),
 
     //楽曲投稿
     SONG("song"),

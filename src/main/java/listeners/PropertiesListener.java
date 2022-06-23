@@ -43,12 +43,12 @@ public class PropertiesListener implements ServletContextListener {
                 context.setAttribute(pname, properties.getProperty(pname));
 
             }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (NullPointerException m) {
+            m.printStackTrace();
+        } catch (FileNotFoundException m) {
+            m.printStackTrace();
+        } catch (IOException m) {
+            m.printStackTrace();
         }
     }
 
