@@ -134,4 +134,30 @@ public void create() throws ServletException, IOException {
     }
 }
 
+
+
+/**
+ * 詳細画面を表示する
+ * @throws ServletException
+ * @throws IOException
+ */
+
+public void show() throws ServletException, IOException {
+
+  //idを条件に従業員データを取得する
+    MemberView mv = service.findOne(toNumber(getRequestParam(AttributeConst.MEM_ID)));{
+
+  //データが取得できなかった、または物理削除されている場合はエラー画面を表示
+    if(mv == null) {
+       forward(ForwardConst.FW_ERR_UNKNOWN) ;
+    return;
 }
+
+    putRequestScope(AttributeConst.MEMBER, mv); //取得した会員情報
+
+//詳細画面を表示
+    forward(ForwardConst.FW_MEM_SHOW);
+}
+}
+}
+
