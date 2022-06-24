@@ -101,6 +101,7 @@ public void create() throws ServletException, IOException {
                 getRequestParam(AttributeConst.MEM_NAME),
                 getRequestParam(AttributeConst.MEM_PASS),
                 null,
+                null,
                 null);
 
 
@@ -199,6 +200,7 @@ public void update() throws ServletException, IOException{
                 getRequestParam(AttributeConst.MEM_NAME),
                 getRequestParam(AttributeConst.MEM_PASS),
                 null,
+                null,
                 null);
 
       //アプリケーションスコープからpepper文字列を取得
@@ -228,5 +230,28 @@ public void update() throws ServletException, IOException{
     }
 }
 
+/**
+ * 物理削除を行う
+ * @throws ServletException
+ * @throws IOException
+ */
+public void Delete() throws ServletException, IOException{
+
+  //CSRF対策 tokenのチェック
+    if(checkToken()) {
+
+      //idを条件に会員データを物理削除する
+     // セッションスコープからメッセージのIDを取得して
+        // 該当のIDのメッセージ1件のみをデータベースから取得
+        service.Delete(toNumber(getRequestParam(AttributeConst.MEM_ID)));
+
+        //セッションに削除完了のフラッシュメッセージを設定
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
+        // セッションスコープ上の不要になったデータを削除
+        request.getSession().removeAttribute("member_id");
+}
+
+}
 }
 

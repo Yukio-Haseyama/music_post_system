@@ -47,4 +47,8 @@ public class MemberView {
      */
     private LocalDateTime updatedAt;
 
+    /**
+     * 物理削除
+     */
+    private String delete;
 }

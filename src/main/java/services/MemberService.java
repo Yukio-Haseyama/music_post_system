@@ -233,4 +233,23 @@ public class MemberService extends ServiceBase {
 
     }
 
+    public void Delete(Integer id){
+
+        //idを条件に登録済みの従業員情報を取得する
+        MemberView savedMem = findOne(id);
+
+      //更新日時に現在時刻を設定する
+        LocalDateTime today = LocalDateTime.now();
+        savedMem.setUpdatedAt(today);
+
+      //物理削除を行う
+        savedMem.setDelete(JpaConst.MEM_COL_DELETE);
+
+
+      //更新処理を行う
+        update(savedMem);
+
+
+    }
+
 }
