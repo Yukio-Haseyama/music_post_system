@@ -50,5 +50,6 @@ public class MemberView {
     /**
      * 物理削除
      */
-    private String delete;
-}
+    private String destroy;
+
+    }

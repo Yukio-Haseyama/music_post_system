@@ -80,8 +80,6 @@ public class Member {
     @Column(name = JpaConst.MEM_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(name = JpaConst.MEM_COL_DELETE, nullable = false)
-    private String delete;
 
 
 

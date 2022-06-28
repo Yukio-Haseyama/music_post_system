@@ -24,8 +24,7 @@ public class MemberConverter {
                 mv.getName(),
                 mv.getPassword(),
                 mv.getCreatedAt(),
-                mv.getUpdatedAt(),
-                mv.getDelete());
+                mv.getUpdatedAt());
     }
 
     /**
@@ -46,7 +45,7 @@ public class MemberConverter {
                 m.getPassword(),
                 m.getCreatedAt(),
                 m.getUpdatedAt(),
-                m.getDelete());
+                null);
 
     }
 

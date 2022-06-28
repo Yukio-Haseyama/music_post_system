@@ -4,6 +4,8 @@ package constants;
 
 public enum AttributeConst {
 
+    Entity("entity"),
+
     //フラッシュメッセージ
     FLUSH("flush"),
 

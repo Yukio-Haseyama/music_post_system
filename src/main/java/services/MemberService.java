@@ -43,7 +43,7 @@ public class MemberService extends ServiceBase {
     }
 
     /**
-     * 会員番号、パスワードを条件に取得したデータをEmployeeViewのインスタンスで返却する
+     * 会員番号、パスワードを条件に取得したデータをMemberViewのインスタンスで返却する
      * @param code 会員番号
      * @param plainPass パスワード文字列
      * @param pepper pepper文字列
@@ -233,23 +233,17 @@ public class MemberService extends ServiceBase {
 
     }
 
-    public void Delete(Integer id){
+    public void destroy(Integer id) {
 
-        //idを条件に登録済みの従業員情報を取得する
-        MemberView savedMem = findOne(id);
-
-      //更新日時に現在時刻を設定する
-        LocalDateTime today = LocalDateTime.now();
-        savedMem.setUpdatedAt(today);
-
-      //物理削除を行う
-        savedMem.setDelete(JpaConst.MEM_COL_DELETE);
-
+        //idを条件に登録済みの会員情報を取得する
+        Member m = findOneInternal(id);
 
       //更新処理を行う
-        update(savedMem);
+        em.getTransaction().begin();
+        em.remove(m); // データ削除
+        em.getTransaction().commit();
+        em.close();
 
 
     }
-
 }

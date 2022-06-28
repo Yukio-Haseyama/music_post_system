@@ -17,6 +17,7 @@ import services.MemberService;
  * 会員に関わる処理を行うActionクラス
  *
  */
+
 public class MemberAction extends ActionBase {
 
     private MemberService service;
@@ -235,23 +236,27 @@ public void update() throws ServletException, IOException{
  * @throws ServletException
  * @throws IOException
  */
-public void Delete() throws ServletException, IOException{
 
-  //CSRF対策 tokenのチェック
-    if(checkToken()) {
+    public void destroy() throws ServletException, IOException{
 
-      //idを条件に会員データを物理削除する
-     // セッションスコープからメッセージのIDを取得して
-        // 該当のIDのメッセージ1件のみをデータベースから取得
-        service.Delete(toNumber(getRequestParam(AttributeConst.MEM_ID)));
+   //CSRF対策 tokenのチェック
+      if(checkToken()) {
+      }
 
-        //セッションに削除完了のフラッシュメッセージを設定
-        putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+          String _token = request.getParameter("_token");
+          if(_token != null && _token.equals(request.getSession().getId())) {
 
-        // セッションスコープ上の不要になったデータを削除
-        request.getSession().removeAttribute("member_id");
+        // 該当のIDの会員1件のみをデータベースから取得
+        service.destroy(toNumber(getRequestParam(AttributeConst.MEM_ID)));
+
+      //セッションに削除完了のフラッシュメッセージを設定
+          putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
+        //一覧画面にリダイレクト
+        redirect(ForwardConst.ACT_MEM, ForwardConst.CMD_INDEX);
+
+}
+}
 }
 
-}
-}
 
