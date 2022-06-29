@@ -134,9 +134,9 @@ public class MemberService extends ServiceBase {
 
         boolean validateCode = false;
         if (!savedMem.getCode().equals(mv.getCode())) {
-            //社員番号を更新する場合
+            //会員番号を更新する場合
 
-            //社員番号についてのバリデーションを行う
+            //会員番号についてのバリデーションを行う
             validateCode = true;
             //変更後の社員番号を設定する
             savedMem.setCode(mv.getCode());
@@ -177,11 +177,11 @@ public class MemberService extends ServiceBase {
      * @param code 会員番号
      * @param plainPass パスワード
      * @param pepper pepper文字列
-     * @return 認証結果を返却す(成功:true 失敗:false)
+     * @return 認証結果を返却する(成功:true 失敗:false)
      */
     public Boolean validateLogin(String code, String plainPass, String pepper) {
 
-        boolean isValidMember = false;
+        Boolean isValidMember = false;
         if (code != null && !code.equals("") && plainPass != null && !plainPass.equals("")) {
             MemberView mv = findOne(code, plainPass, pepper);
 

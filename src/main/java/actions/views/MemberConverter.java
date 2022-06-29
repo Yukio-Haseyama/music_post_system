@@ -71,6 +71,7 @@ public class MemberConverter {
      */
     public static void copyViewToModel(Member m, MemberView mv) {
         m.setId(mv.getId());
+        m.setCode(mv.getCode());
         m.setName(mv.getName());
         m.setPassword(mv.getPassword());
         m.setCreatedAt(mv.getCreatedAt());

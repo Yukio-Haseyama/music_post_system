@@ -5,7 +5,7 @@
 
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actMem" value="${ForwardConst.ACT_MEM.getValue()}" />
-<c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="actSong" value="${ForwardConst.ACT_SONG.getValue()}" />
 <c:set var="actAuth" value="${ForwardConst.ACT_AUTH.getValue()}" />
 
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -24,9 +24,6 @@
         <div id="header">
             <div id="header_menu">
                 <h1><a href="<c:url value='/?action=${actTop}&command=${commIdx}' />">オリジナル楽曲共有サイト</a></h1>&nbsp;&nbsp;&nbsp;
-                <c:if test="${sessionScope.login_member != null}">
-                        <a href="<c:url value='?action=${actMem}&command=${commIdx}' />">会員管理</a>&nbsp;
-                    </c:if>
                     <a href="<c:url value='?action=${actSong}&command=${commIdx}' />">楽曲管理</a>&nbsp;
             </div>
             <c:if test="${sessionScope.login_member != null}">
@@ -38,7 +35,7 @@
             </c:if>
         </div>
         <div id="content">${param.content}</div>
-        <div id="footer">by Taro Kirameki.</div>
+        <div id="footer">by Yukio Haseyama.</div>
     </div>
 </body>
 </html>
