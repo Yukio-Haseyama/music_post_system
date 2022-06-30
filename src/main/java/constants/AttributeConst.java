@@ -35,8 +35,8 @@ public enum AttributeConst {
     //楽曲投稿
     SONG("song"),
     SONGS("songs"),
-    SONGS_COUNT("songs_count"),
-    SONGS_ID("id"),
+    SONG_COUNT("song_count"),
+    SONG_ID("id"),
     SONG_DATE("song_date"),
     SONG_TITLE("title"),
     SONG_CONTENT("content"),

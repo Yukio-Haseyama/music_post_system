@@ -137,4 +137,23 @@ h1 a {
     color: #eeeeee;
 }
 
+table#song_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
 
+table#song_list .song_name {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#song_list .song_date {
+    width: 20%;
+}
+
+table#song_list .song_title {
+    width: 37%;
+}
+
+table#song_list .song_action {
+    width: 13%;
+}
