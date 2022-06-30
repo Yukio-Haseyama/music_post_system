@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,11 +41,11 @@ public class SongAction extends ActionBase {
      */
     public void index() throws ServletException, IOException {
 
-        //指定されたページ数の一覧画面に表示する日報データを取得
+        //指定されたページ数の一覧画面に表示する楽曲データを取得
         int page = getPage();
         List<SongView> songs = service.getAllPerPage(page);
 
-        //全日報データの件数を取得
+        //全楽曲データの件数を取得
         long song_count = service.countAll();
 
         putRequestScope(AttributeConst.SONGS, songs); //取得した楽曲データ
@@ -60,7 +61,26 @@ public class SongAction extends ActionBase {
         }
 
         //一覧画面を表示
-        forward(ForwardConst.FW_SONGS_INDEX);
+        forward(ForwardConst.FW_SONG_INDEX);
     }
+
+    /**
+     * 新規登録画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void entryNew() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+
+        //楽曲情報の空インスタンスに、楽曲の日付＝今日の日付を設定する
+        SongView sv = new SongView();
+        sv.setSongDate(LocalDate.now());
+        putRequestScope(AttributeConst.SONG, sv); //日付のみ設定済みの楽曲インスタンス
+
+        //新規登録画面を表示
+        forward(ForwardConst.FW_SONG_NEW);
+
+}
 
 }

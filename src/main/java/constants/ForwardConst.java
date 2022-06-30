@@ -33,10 +33,10 @@ public enum ForwardConst {
     FW_MEM_SHOW("members/show"),
     FW_MEM_NEW("members/new"),
     FW_MEM_EDIT("members/edit"),
-    FW_SONGS_INDEX("songs/index"),
-    FW_SONGS_SHOW("songs/show"),
-    FW_SONGS_NEW("songs/new"),
-    FW_SONGS_EDIT("songs/edit");
+    FW_SONG_INDEX("songs/index"),
+    FW_SONG_SHOW("songs/show"),
+    FW_SONG_NEW("songs/new"),
+    FW_SONG_EDIT("songs/edit");
 
     //文字列
     private final String text;
