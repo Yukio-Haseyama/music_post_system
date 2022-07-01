@@ -6,10 +6,12 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import actions.views.MemberView;
 import actions.views.SongView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import constants.MessageConst;
 import services.SongService;
 
 /**
@@ -82,5 +84,63 @@ public class SongAction extends ActionBase {
         forward(ForwardConst.FW_SONG_NEW);
 
 }
+
+    /**
+     * 新規登録を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void create() throws ServletException, IOException {
+
+        //CSRF対策 tokenのチェック
+        if (checkToken()) {
+
+            //楽曲の日付が入力されていなければ、今日の日付を設定
+            LocalDate day = null;
+            if (getRequestParam(AttributeConst.SONG_DATE) == null
+                    || getRequestParam(AttributeConst.SONG_DATE).equals("")) {
+                day = LocalDate.now();
+            } else {
+                day = LocalDate.parse(getRequestParam(AttributeConst.SONG_DATE));
+            }
+
+            //セッションからログイン中の会員情報を取得
+            MemberView mv = (MemberView) getSessionScope(AttributeConst.LOGIN_MEM);
+
+            //パラメータの値をもとに楽曲情報のインスタンスを作成する
+            SongView sv = new SongView(
+                    null,
+                    mv, //ログインしている会員を、楽曲作成者として登録する
+                    day,
+                    getRequestParam(AttributeConst.SONG_TITLE),
+                    getRequestParam(AttributeConst.SONG_URL),
+                    null,
+                    null);
+
+            //楽曲情報登録
+            List<String> errors = service.create(sv);
+
+            if (errors.size() > 0) {
+                //登録中にエラーがあった場合
+
+                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+                putRequestScope(AttributeConst.SONG, sv);//入力された楽曲情報
+                putRequestScope(AttributeConst.ERR, errors);//エラーのリスト
+
+                //新規登録画面を再表示
+                forward(ForwardConst.FW_SONG_NEW);
+
+            } else {
+                //登録中にエラーがなかった場合
+
+                //セッションに登録完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+
+                //一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_SONG, ForwardConst.CMD_INDEX);
+            }
+        }
+    }
+
 
 }
