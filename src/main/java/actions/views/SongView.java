@@ -32,7 +32,7 @@ public class SongView {
     /**
      * いつの楽曲かを示す日付
      */
-    private LocalDate songDate;
+    private LocalDate song_date;
 
     /**
      * 楽曲のタイトル

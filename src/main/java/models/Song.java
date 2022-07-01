@@ -67,7 +67,7 @@ public class Song {
      * いつの楽曲かを示す日付
      */
     @Column(name = JpaConst.SONGS_COL_SONGS_DATE, nullable = false)
-    private LocalDate songDate;
+    private LocalDate song_date;
 
     /**
      * 楽曲のタイトル

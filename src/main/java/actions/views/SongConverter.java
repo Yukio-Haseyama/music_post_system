@@ -21,7 +21,7 @@ public class SongConverter {
         return new Song(
                 sv.getId(),
                 MemberConverter.toModel(sv.getMember()),
-                sv.getSongDate(),
+                sv.getSong_date(),
                 sv.getTitle(),
                 sv.getUrl(),
                 sv.getCreatedAt(),
@@ -42,7 +42,7 @@ public class SongConverter {
         return new SongView(
                 s.getId(),
                 MemberConverter.toView(s.getMember()),
-                s.getSongDate(),
+                s.getSong_date(),
                 s.getTitle(),
                 s.getUrl(),
                 s.getCreatedAt(),
@@ -72,7 +72,7 @@ public class SongConverter {
     public static void copyViewToModel(Song s, SongView sv) {
         s.setId(sv.getId());
         s.setMember(MemberConverter.toModel(sv.getMember()));
-        s.setSongDate(sv.getSongDate());
+        s.setSong_date(sv.getSong_date());
         s.setTitle(sv.getTitle());
         s.setUrl(sv.getUrl());
         s.setCreatedAt(sv.getCreatedAt());

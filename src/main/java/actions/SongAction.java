@@ -77,7 +77,7 @@ public class SongAction extends ActionBase {
 
         //楽曲情報の空インスタンスに、楽曲の日付＝今日の日付を設定する
         SongView sv = new SongView();
-        sv.setSongDate(LocalDate.now());
+        sv.setSong_date(LocalDate.now());
         putRequestScope(AttributeConst.SONG, sv); //日付のみ設定済みの楽曲インスタンス
 
         //新規登録画面を表示
@@ -141,6 +141,32 @@ public class SongAction extends ActionBase {
             }
         }
     }
+
+
+    /**
+     * 詳細画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void show() throws ServletException, IOException {
+
+        //idを条件に楽曲データを取得する
+        SongView sv = service.findOne(toNumber(getRequestParam(AttributeConst.SONG_ID)));
+
+        if (sv == null) {
+            //該当の楽曲データが存在しない場合はエラー画面を表示
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+
+        } else {
+
+            putRequestScope(AttributeConst.SONG, sv); //取得した楽曲データ
+
+            //詳細画面を表示
+            forward(ForwardConst.FW_SONG_SHOW);
+        }
+    }
+
+
 
 
 }

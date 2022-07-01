@@ -157,3 +157,8 @@ table#song_list .song_title {
 table#song_list .song_action {
     width: 13%;
 }
+
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
+
