@@ -19,7 +19,7 @@
         <table id="song_list">
             <tbody>
                 <tr>
-                    <th class="song_name">氏名</th>
+                    <th class="song_name">名前</th>
                     <th class="song_date">日付</th>
                     <th class="song_title">タイトル</th>
                     <th class="song_action">操作</th>
@@ -38,8 +38,8 @@
         </table>
 
         <div id="pagination">
-            （全 ${songs_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((songs_count - 1) / maxRow) + 1}" step="1">
+            （全 ${song_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((song_count - 1) / maxRow) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
