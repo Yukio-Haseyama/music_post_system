@@ -166,7 +166,35 @@ public class SongAction extends ActionBase {
         }
     }
 
+        /**
+         * 編集画面を表示する
+         * @throws ServletException
+         * @throws IOException
+         */
+        public void edit() throws ServletException, IOException {
+
+            //idを条件に楽曲データを取得する
+            SongView sv = service.findOne(toNumber(getRequestParam(AttributeConst.SONG_ID)));
+
+            //セッションからログイン中の会員情報を取得
+            MemberView mv = (MemberView) getSessionScope(AttributeConst.LOGIN_MEM);
+
+            if (sv == null || mv.getId() != sv.getMember().getId()) {
+                //該当の楽曲データが存在しない、または
+                //ログインしている会員が楽曲の作成者でない場合はエラー画面を表示
+                forward(ForwardConst.FW_ERR_UNKNOWN);
+
+            } else {
+
+                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+                putRequestScope(AttributeConst.SONG, sv); //取得した楽曲データ
+
+                //編集画面を表示
+                forward(ForwardConst.FW_SONG_EDIT);
+            }
+
+        }
+
+    }
 
 
-
-}

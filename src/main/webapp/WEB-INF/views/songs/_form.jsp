@@ -12,7 +12,7 @@
 
          </div>
 </c:if>
-<fmt:parseDate value="${song.songDate}" pattern="yyyy-MM-dd" var="songDay" type="date" />
+<fmt:parseDate value="${song.song_date}" pattern="yyyy-MM-dd" var="songDay" type="date" />
 <label for="${AttributeConst.SONG_DATE.getValue()}">日付</label><br />
 <input type="date" name="${AttributeConst.SONG_DATE.getValue()}" value="<fmt:formatDate value='${songDay}' pattern='yyyy-MM-dd' />" />
 <br /><br />
