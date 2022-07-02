@@ -195,6 +195,50 @@ public class SongAction extends ActionBase {
 
         }
 
+        /**
+         * 更新を行う
+         * @throws ServletException
+         * @throws IOException
+         */
+        public void update() throws ServletException, IOException {
+
+            //CSRF対策 tokenのチェック
+            if (checkToken()) {
+
+                //idを条件に楽曲データを取得する
+                SongView sv = service.findOne(toNumber(getRequestParam(AttributeConst.SONG_ID)));
+
+                //入力された楽曲内容を設定する
+                sv.setSong_date(toLocalDate(getRequestParam(AttributeConst.SONG_DATE)));
+                sv.setTitle(getRequestParam(AttributeConst.SONG_TITLE));
+                sv.setUrl(getRequestParam(AttributeConst.SONG_URL));
+
+                //楽曲データを更新する
+                List<String> errors = service.update(sv);
+
+                if (errors.size() > 0) {
+                    //更新中にエラーが発生した場合
+
+                    putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+                    putRequestScope(AttributeConst.SONG, sv); //入力された楽曲情報
+                    putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+                    //編集画面を再表示
+                    forward(ForwardConst.FW_SONG_EDIT);
+                } else {
+                    //更新中にエラーがなかった場合
+
+                    //セッションに更新完了のフラッシュメッセージを設定
+                    putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+
+                    //一覧画面にリダイレクト
+                    redirect(ForwardConst.ACT_SONG, ForwardConst.CMD_INDEX);
+
+                }
+            }
+        }
+
+
     }
 
 
