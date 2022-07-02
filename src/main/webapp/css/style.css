@@ -18,11 +18,8 @@ body {
 }
 
 h1 {
-     width: 94%;
-    padding-top: 17px;
-    padding-left: 3%;
-    font-size: 24px;
-    color: #eeeeee;
+   font-size: 24px;
+    display: inline;
 }
 
 h2 {
@@ -109,7 +106,6 @@ tr.row1 {
 tr.row0 {
         background-color: #ffffff;
 }
-
 select {
     height: 30px;
 }
@@ -151,7 +147,7 @@ table#song_list .song_date {
 }
 
 table#song_list .song_title {
-    width: 37%;
+    width: 15%;
 }
 
 table#song_list .song_action {
@@ -162,23 +158,6 @@ pre {
     font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
 }
 
-table#song_list th {
-    font-weight: bold;
-    padding: 10px 2%;
-}
-
-table#song_list .song_name {
-    width: 20%;
-    padding: 10px 2%;
-}
-table#song_list .song_date {
-    width: 20%;
-}
-
-table#song_list .song_title {
-    width: 37%;
-}
-
-table#song_list .song_action {
-    width: 13%;
+h3 {
+    font-size: larger;
 }
